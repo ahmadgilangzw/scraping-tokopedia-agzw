@@ -22,3 +22,5 @@ example : java -jar scraping-tokopedia-agzw-1.1.0.1-SNAPSHOT-jar-with-dependenci
 that's mean you want to get 100 data
 
 CSV file will be provided with a name in the following format: Product_TOKOPEDIA-SCRAPING-AGZW_<timeInMillis>.csv
+
+Ahmad Gilang Zain Wahabi
