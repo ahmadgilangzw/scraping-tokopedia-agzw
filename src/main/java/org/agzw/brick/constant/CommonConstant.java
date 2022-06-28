@@ -1,7 +1,7 @@
 package org.agzw.brick.constant;
 
 public class CommonConstant {
-    public static final String PATH_CHROME_DRIVER = "C://sele//chromedriver.exe";
+    public static final String PATH_CHROME_DRIVER = "path.chrome.driver";
     public static final String SEPARATOR = ";";
     public static final String DOUBLE_QUOTES = "\"";
     public static final String BASE_URL = "https://www.tokopedia.com";

@@ -1,5 +1,6 @@
 package org.agzw.brick.configuration;
 
+import org.apache.commons.configuration.PropertiesConfiguration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -12,13 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.agzw.brick.constant.CommonConstant.EMPTY;
-import static org.agzw.brick.constant.CommonConstant.GOOGLE_URL;
-import static org.agzw.brick.constant.CommonConstant.JS_SCROLL_MEDIUM;
-import static org.agzw.brick.constant.CommonConstant.JS_SCROLL_SMALL;
-import static org.agzw.brick.constant.CommonConstant.JS_WINDOW_OPEN;
-import static org.agzw.brick.constant.CommonConstant.PATH_CHROME_DRIVER;
-import static org.agzw.brick.constant.CommonConstant.USER_AGENT;
+import static org.agzw.brick.constant.CommonConstant.*;
 
 public class ConfigurationWebDriver {
     private WebDriver driver;
@@ -26,7 +21,7 @@ public class ConfigurationWebDriver {
     private JavascriptExecutor jsExecutor;
 
     public ConfigurationWebDriver() {
-        System.setProperty("webdriver.chrome.driver", PATH_CHROME_DRIVER);
+        System.setProperty("webdriver.chrome.driver", getPathChromeDriverValue());
         ChromeOptions options = new ChromeOptions();
         options.setHeadless(true);
         options.addArguments(USER_AGENT);
@@ -34,6 +29,17 @@ public class ConfigurationWebDriver {
         driver = new ChromeDriver(options);
         wait = new WebDriverWait(driver, 5);
         jsExecutor = (JavascriptExecutor) driver;
+    }
+
+    public String getPathChromeDriverValue(){
+        try {
+            PropertiesConfiguration config = new PropertiesConfiguration();
+            config.load("application.properties");
+            return config.getString(PATH_CHROME_DRIVER);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return "";
     }
 
     public List<String> prepareTwoTabs() {
